@@ -2,161 +2,636 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sorry, You Are Late</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<title>Sorry, You Are Late ♡</title>
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #fce4ec, #e8eaf6);
-      color: #29243b;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap');
 
-    .container {
-      width: 100%;
-      max-width: 430px;
-      padding: 40px 28px;
-      text-align: center;
-      background: #ffffff;
-      border-radius: 25px;
-      box-shadow: 0 15px 45px rgba(50, 40, 80, 0.12);
-    }
+:root {
+  --pink: #ff6fae;
+  --deep-pink: #e94f91;
+  --lavender: #a78bfa;
+  --purple: #7656d8;
+  --cream: #fff9fc;
+  --text: #49364f;
+}
 
-    .icon {
-      font-size: 65px;
-      margin-bottom: 20px;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    h1 {
-      font-size: 30px;
-      margin-bottom: 15px;
-      color: #d8435c;
-    }
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 15%, #ffe0ef 0, transparent 30%),
+    radial-gradient(circle at 90% 20%, #e7dcff 0, transparent 32%),
+    radial-gradient(circle at 50% 100%, #ffe9f4 0, transparent 40%),
+    linear-gradient(135deg, #fff8fc, #f8f4ff, #fff0f7);
+}
 
-    .message {
-      font-size: 16px;
-      line-height: 1.7;
-      color: #666;
-      margin-bottom: 25px;
-    }
+/* Soft background glow */
 
-    .notice {
-      background: #fff3f5;
-      border: 1px solid #ffd6df;
-      border-radius: 15px;
-      padding: 20px;
-      margin-bottom: 25px;
-      font-size: 16px;
-      line-height: 1.6;
-    }
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: -1;
+}
 
-    .notice strong {
-      display: block;
-      color: #d8435c;
-      font-size: 23px;
-      margin-bottom: 5px;
-    }
+body::before {
+  background: #ff9cc9;
+  top: -100px;
+  left: -100px;
+  animation: glowMove 9s ease-in-out infinite alternate;
+}
 
-    .contact-title {
-      font-size: 14px;
-      color: #888;
-      margin-bottom: 15px;
-    }
+body::after {
+  background: #b8a0ff;
+  bottom: -100px;
+  right: -100px;
+  animation: glowMove 11s ease-in-out infinite alternate-reverse;
+}
 
-    .button {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      margin-top: 12px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-size: 16px;
-      font-weight: bold;
-      transition: 0.2s;
-    }
+@keyframes glowMove {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(80px, 50px) scale(1.2); }
+}
 
-    .whatsapp {
-      background: #25D366;
-      color: white;
-    }
+/* Floating decorations */
 
-    .gmail {
-      background: #d94b45;
-      color: white;
-    }
+.decorations {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
 
-    .button:hover {
-      transform: translateY(-2px);
-      opacity: 0.92;
-    }
+.float-heart {
+  position: absolute;
+  bottom: -60px;
+  opacity: 0;
+  animation: floatUp linear infinite;
+  filter: drop-shadow(0 5px 8px #ff9ac455);
+}
 
-    .footer {
-      margin-top: 25px;
-      font-size: 12px;
-      color: #aaa;
-    }
-  </style>
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(.7);
+    opacity: 0;
+  }
+  15% { opacity: .65; }
+  80% { opacity: .45; }
+  100% {
+    transform: translateY(-115vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.sparkle {
+  position: absolute;
+  color: #d7a3ff;
+  animation: sparkle 2.5s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: .2; transform: scale(.7) rotate(0); }
+  50% { opacity: 1; transform: scale(1.3) rotate(45deg); }
+}
+
+/* Main layout */
+
+.wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 35px 18px;
+}
+
+.card {
+  width: 100%;
+  max-width: 470px;
+  position: relative;
+  padding: 36px 28px 30px;
+  text-align: center;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, .78);
+  border: 1px solid rgba(255, 255, 255, .95);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow:
+    0 25px 70px rgba(180, 115, 190, .16),
+    0 8px 25px rgba(255, 120, 175, .12),
+    inset 0 1px 0 white;
+  animation: cardEntrance .9s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(35px) scale(.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.top-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 15px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #b64c88;
+  background: linear-gradient(135deg, #fff0f7, #f3eaff);
+  border: 1px solid #f8d9ee;
+  margin-bottom: 20px;
+}
+
+.clock {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 53px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff0f7, #f0e8ff);
+  box-shadow:
+    0 12px 30px #e9b7dc55,
+    inset 0 3px 8px white;
+  animation: clockBounce 3s ease-in-out infinite;
+}
+
+@keyframes clockBounce {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50% { transform: translateY(-8px) rotate(5deg); }
+}
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(27px, 7vw, 37px);
+  font-weight: 400;
+  line-height: 1.35;
+  margin-bottom: 14px;
+  background: linear-gradient(135deg, #e84e92, #a46ce5, #ed6cae);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #82718a;
+  margin-bottom: 24px;
+}
+
+/* Submission notice */
+
+.notice {
+  position: relative;
+  overflow: hidden;
+  padding: 25px 18px;
+  margin-bottom: 25px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #fff2f8, #f7f0ff);
+  border: 1px solid #f4d8ed;
+  box-shadow:
+    0 10px 25px rgba(204, 139, 196, .12),
+    inset 0 1px 0 white;
+}
+
+.notice::before {
+  content: "♡";
+  position: absolute;
+  font-size: 100px;
+  color: #f6cde5;
+  opacity: .22;
+  right: -12px;
+  bottom: -40px;
+  transform: rotate(-15deg);
+}
+
+.student-count {
+  display: block;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #e94e92, #a66de2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 5px;
+}
+
+.notice-text {
+  position: relative;
+  font-size: 17px;
+  font-weight: 800;
+  color: #765b83;
+}
+
+.notice-small {
+  font-size: 13px;
+  color: #a18ba8;
+  margin-top: 10px;
+}
+
+/* Contact section */
+
+.contact-heading {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #aa8bb0;
+  margin-bottom: 14px;
+}
+
+.contact-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 58px;
+  padding: 15px 18px;
+  margin-top: 13px;
+  border-radius: 17px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 900;
+  color: white;
+  overflow: hidden;
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
+}
+
+.contact-button:hover {
+  transform: translateY(-4px) scale(1.015);
+  filter: saturate(1.08);
+}
+
+.contact-button:active {
+  transform: scale(.96);
+}
+
+.whatsapp {
+  background: linear-gradient(135deg, #38d98a, #20b96c);
+  box-shadow:
+    0 10px 25px #28c87944,
+    inset 0 1px 0 #ffffff70;
+}
+
+.whatsapp:hover {
+  box-shadow: 0 15px 35px #28c87966;
+}
+
+.gmail {
+  background: linear-gradient(135deg, #ff789f, #e9578e);
+  box-shadow:
+    0 10px 25px #ed659944,
+    inset 0 1px 0 #ffffff70;
+}
+
+.gmail:hover {
+  box-shadow: 0 15px 35px #ed659966;
+}
+
+.button-icon {
+  font-size: 23px;
+  transition: transform .3s ease;
+}
+
+.contact-button:hover .button-icon {
+  transform: rotate(-12deg) scale(1.2);
+}
+
+/* Button shine */
+
+.contact-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,.35),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: left .7s ease;
+}
+
+.contact-button:hover::before {
+  left: 150%;
+}
+
+.footer {
+  margin-top: 25px;
+  font-size: 12px;
+  color: #b7a4bd;
+  line-height: 1.8;
+}
+
+.footer-heart {
+  color: #f27eaf;
+  display: inline-block;
+  animation: heartbeat 1.2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  20% { transform: scale(1.25); }
+  40% { transform: scale(1); }
+  60% { transform: scale(1.15); }
+}
+
+/* Click burst: five different hearts */
+
+.burst-heart {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  font-size: 30px;
+  animation: heartBurst 1.25s cubic-bezier(.15,.75,.3,1) forwards;
+  filter: drop-shadow(0 5px 8px #e66da855);
+}
+
+@keyframes heartBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.2) rotate(0deg);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.3) rotate(15deg);
+  }
+  100% {
+    opacity: 0;
+    transform:
+      translate(
+        calc(-50% + var(--move-x)),
+        calc(-50% + var(--move-y))
+      )
+      scale(.7)
+      rotate(var(--rotation));
+  }
+}
+
+/* Cute click counter */
+
+.click-counter {
+  display: inline-block;
+  margin-top: 17px;
+  padding: 7px 13px;
+  border-radius: 30px;
+  background: #fff5fa;
+  border: 1px solid #f8ddec;
+  color: #c17ca6;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* Mobile */
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 20px 14px;
+  }
+
+  .card {
+    padding: 30px 21px 25px;
+    border-radius: 27px;
+  }
+
+  .clock {
+    width: 85px;
+    height: 85px;
+    font-size: 45px;
+  }
+
+  .notice {
+    padding: 22px 15px;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<!-- Background animations -->
+<div class="decorations" id="decorations"></div>
 
-    <div class="icon">⏰</div>
+<main class="wrapper">
+  <section class="card">
+
+    <div class="top-label">
+      ✦ NSS REGISTRATION ✦
+    </div>
+
+    <div class="clock">⏰</div>
 
     <h1>Sorry, You Are Late!</h1>
 
-    <p class="message">
-      We are sorry to inform you that the submission process
+    <p class="subtitle">
+      Oopsie! The registration submission process
       has already been completed.
     </p>
 
     <div class="notice">
-      <strong>20 Students</strong>
-      Had already submitted.
-      <br><br>
-      Please contact the admin for further assistance.
+      <span class="student-count">20 Students</span>
+
+      <div class="notice-text">
+        Had already submitted.
+      </div>
+
+      <div class="notice-small">
+        Please contact the admin for further assistance ♡
+      </div>
     </div>
 
-    <p class="contact-title">
-      Contact Admin
-    </p>
+    <div class="contact-heading">
+      CONTACT ADMIN
+    </div>
 
-    <!-- WhatsApp Contact -->
+    <!-- WhatsApp -->
     <a
-      class="button whatsapp"
+      class="contact-button whatsapp"
       href="https://wa.me/917086941967?text=Hello%20Admin%2C%20I%20am%20sorry%20for%20being%20late.%20I%20would%20like%20to%20know%20if%20I%20can%20still%20Submit%20the%20form%20for%20my%20nss%20registration."
       target="_blank"
       rel="noopener noreferrer">
-      💬 Contact via WhatsApp
+
+      <span class="button-icon">💬</span>
+      <span>Contact via WhatsApp</span>
     </a>
 
-    <!-- Gmail Contact -->
+    <!-- Gmail -->
     <a
-      class="button gmail"
+      class="contact-button gmail"
       href="https://mail.google.com/mail/?view=cm&fs=1&to=reinsangma@gmail.com&su=NSS%20Registration%20Late%20Submission%20Request&body=Hello%20Admin%2C%0A%0AI%20am%20sorry%20for%20being%20late.%20I%20would%20like%20to%20know%20if%20I%20can%20still%20Submit%20the%20form%20for%20my%20nss%20registration.%0A%0AKindly%20help%20me%20with%20the%20necessary%20information.%0A%0AThank%20you."
       target="_blank"
       rel="noopener noreferrer">
-      ✉️ Contact via Gmail
+
+      <span class="button-icon">✉️</span>
+      <span>Contact via Gmail</span>
     </a>
 
-    <div class="footer">
-      Thank you for your understanding.
+    <div class="click-counter" id="clickCounter">
+      💗 0 hearts shared
     </div>
 
-  </div>
+    <div class="footer">
+      Made with <span class="footer-heart">♥</span> and care
+      <br>
+      Thank you for your understanding ♡
+    </div>
+
+  </section>
+</main>
+
+<script>
+/* Ambient floating hearts */
+
+const decorations = document.getElementById("decorations");
+
+const floatingHearts = [
+  "♡", "💗", "💕", "✨", "💖", "🌸"
+];
+
+for (let i = 0; i < 18; i++) {
+  const heart = document.createElement("span");
+
+  heart.className = "float-heart";
+  heart.textContent =
+    floatingHearts[Math.floor(Math.random() * floatingHearts.length)];
+
+  heart.style.left = Math.random() * 100 + "%";
+  heart.style.fontSize = (14 + Math.random() * 23) + "px";
+  heart.style.animationDuration = (9 + Math.random() * 13) + "s";
+  heart.style.animationDelay = (-Math.random() * 20) + "s";
+
+  decorations.appendChild(heart);
+}
+
+/* Background sparkles */
+
+for (let i = 0; i < 20; i++) {
+  const sparkle = document.createElement("span");
+
+  sparkle.className = "sparkle";
+  sparkle.textContent = "✦";
+  sparkle.style.left = Math.random() * 100 + "%";
+  sparkle.style.top = Math.random() * 100 + "%";
+  sparkle.style.fontSize = (8 + Math.random() * 14) + "px";
+  sparkle.style.animationDelay = Math.random() * 3 + "s";
+
+  decorations.appendChild(sparkle);
+}
+
+/* Five different hearts on every click */
+
+const heartTypes = ["💗", "💖", "💕", "💘", "💝"];
+
+let clickCount = 0;
+const counter = document.getElementById("clickCounter");
+
+document.addEventListener("click", function(event) {
+
+  clickCount++;
+
+  counter.textContent =
+    "💗 " + (clickCount * 5) + " hearts shared";
+
+  const centerX = event.clientX;
+  const centerY = event.clientY;
+
+  heartTypes.forEach(function(heart, index) {
+
+    const element = document.createElement("span");
+
+    element.className = "burst-heart";
+    element.textContent = heart;
+
+    element.style.left = centerX + "px";
+    element.style.top = centerY + "px";
+
+    // Spread the five hearts in different directions
+    const angle = (index * 72) * Math.PI / 180;
+    const distance = 70 + Math.random() * 60;
+
+    const moveX = Math.cos(angle) * distance;
+    const moveY = Math.sin(angle) * distance - 35;
+
+    element.style.setProperty("--move-x", moveX + "px");
+    element.style.setProperty("--move-y", moveY + "px");
+    element.style.setProperty(
+      "--rotation",
+      (Math.random() * 90 - 45) + "deg"
+    );
+
+    document.body.appendChild(element);
+
+    setTimeout(function() {
+      element.remove();
+    }, 1300);
+  });
+
+});
+
+/* Button tap feedback */
+
+document.querySelectorAll(".contact-button").forEach(function(button) {
+  button.addEventListener("touchstart", function() {
+    button.style.transform = "scale(.97)";
+  }, { passive: true });
+
+  button.addEventListener("touchend", function() {
+    button.style.transform = "";
+  }, { passive: true });
+});
+</script>
 
 </body>
 </html>

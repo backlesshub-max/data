@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sorry, You Are Late</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fce4ec, #e8eaf6);
+      color: #29243b;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 430px;
+      padding: 40px 28px;
+      text-align: center;
+      background: #ffffff;
+      border-radius: 25px;
+      box-shadow: 0 15px 45px rgba(50, 40, 80, 0.12);
+    }
+
+    .icon {
+      font-size: 65px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 15px;
+      color: #d8435c;
+    }
+
+    .message {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .notice {
+      background: #fff3f5;
+      border: 1px solid #ffd6df;
+      border-radius: 15px;
+      padding: 16px;
+      margin-bottom: 25px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .notice strong {
+      color: #d8435c;
+      font-size: 20px;
+    }
+
+    .contact-title {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 15px;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin-top: 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .gmail {
+      background: #d94b45;
+      color: white;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 12px;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="icon">⏰</div>
+
+    <h1>Sorry, You Are Late!</h1>
+
+    <p class="message">
+      We are sorry to inform you that the collection process
+      has already been completed.
+    </p>
+
+    <div class="notice">
+      <strong>20 Students</strong><br>
+      have already collected their contact details.
+      <br><br>
+      Please contact the admin for further assistance.
+    </div>
+
+    <p class="contact-title">
+      Contact Admin
+    </p>
+
+    <!-- WhatsApp Contact -->
+    <a
+      class="button whatsapp"
+      href="https://wa.me/917086941967?text=Hello%20Admin%2C%20I%20am%20sorry%20for%20being%20late.%20I%20would%20like%20to%20know%20if%20I%20can%20still%20collect%20my%20contact%20details."
+      target="_blank"
+      rel="noopener noreferrer">
+      💬 Contact via WhatsApp
+    </a>
+
+    <!-- Gmail Contact -->
+    <a
+      class="button gmail"
+      href="https://mail.google.com/mail/?view=cm&fs=1&to=reinsangma@gmail.com&su=Late%20Collection%20Request&body=Hello%20Admin%2C%0A%0AI%20am%20sorry%20for%20being%20late.%20I%20would%20like%20to%20know%20if%20I%20can%20still%20collect%20my%20contact%20details.%0A%0AKindly%20help%20me%20with%20the%20necessary%20information.%0A%0AThank%20you."
+      target="_blank"
+      rel="noopener noreferrer">
+      ✉️ Contact via Gmail
+    </a>
+
+    <div class="footer">
+      Thank you for your understanding.
+    </div>
+
+  </div>
+
+</body>
+</html>
